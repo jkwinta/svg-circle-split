@@ -1,6 +1,6 @@
-const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
+export const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
 
-function newSvg(size) {
+export function newSvg(size) {
     const result = document.createElementNS(SVG_NAMESPACE, 'svg');
     result.setAttribute('viewBox', `0 0 ${size} ${size}`);
     result.setAttribute('height', size);
@@ -9,8 +9,8 @@ function newSvg(size) {
     return result
 }
 
-function addCircle(svg, colour, radiusPercentage = 1.0) {
-    const size = svg.viewBox.baseVal.width;
+export function addCircle(svg, colour, radiusPercentage = 1.0) {
+    const size = svg.width.baseVal.value ;
     const radius = size / 2;
     const circle = document.createElementNS(SVG_NAMESPACE, 'circle');
     circle.setAttribute('fill', colour);
