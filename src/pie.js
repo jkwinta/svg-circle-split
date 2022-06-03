@@ -1,4 +1,4 @@
-import { SVG_NAMESPACE } from './svg.js';
+import { SVG_NAMESPACE, svgSize, newCircle } from './svg.js';
 
 // https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
 
@@ -33,6 +33,7 @@ function wedge(size, colour, startAngle, stopAngle) {
     const result = document.createElementNS(SVG_NAMESPACE, 'path');
     result.setAttribute('d', wedgePathD(size, startAngle, stopAngle));
     result.setAttribute('fill', colour);
+    // result.setAttribute('stroke', 'black');
     return result;
 }
 
@@ -58,9 +59,8 @@ function pie(size, colours, weights) {
 
 
 export function addPie(svg, colours) {
-    // TODO: fails for 1 colour
-    const size = svg.width.baseVal.value;
-    const wedges = evenPie(size, colours);
+    const size = svgSize(svg);
+    const wedges = colours.length > 1 ? evenPie(size, colours) : [newCircle(size, colours)];
     for (let wedge of wedges) {
         svg.appendChild(wedge);
     }

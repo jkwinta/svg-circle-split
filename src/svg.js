@@ -9,8 +9,22 @@ export function newSvg(size) {
     return result
 }
 
+export function newCircle(size, colour, radiusPercentage = 1.0) {
+    const radius = size / 2;
+    const circle = document.createElementNS(SVG_NAMESPACE, 'circle');
+    circle.setAttribute('fill', colour);
+    circle.setAttribute('cx', radius);
+    circle.setAttribute('cy', radius);
+    circle.setAttribute('r', radius * radiusPercentage);
+    return circle;
+}
+
+export function svgSize(svg) {
+    return svg.width.baseVal.value;
+}
+
 export function addCircle(svg, colour, radiusPercentage = 1.0) {
-    const size = svg.width.baseVal.value ;
+    const size = svgSize(svg);
     const radius = size / 2;
     const circle = document.createElementNS(SVG_NAMESPACE, 'circle');
     circle.setAttribute('fill', colour);
